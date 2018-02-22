@@ -59,6 +59,7 @@ public class ConversaActivity extends AppCompatActivity {
         idUsuarioRemetente = preferencias.getIdentificador();
         nomeUsuarioRemetente = preferencias.getNome();
 
+        //Recupera os dados vindos da outra activity
         Bundle extra = getIntent().getExtras();
 
         if( extra != null ){

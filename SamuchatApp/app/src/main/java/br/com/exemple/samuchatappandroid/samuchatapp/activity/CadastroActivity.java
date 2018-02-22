@@ -98,6 +98,7 @@ public class CadastroActivity extends AppCompatActivity {
                         erro = "Já existe uma conta com esse e-mail.";
                     } catch (Exception e) {
                         e.printStackTrace();
+                        Log.e("CADASTRO ERRO: ", "ERRO DESCRIP: " + e.getMessage());
                     }
 
                     Toast.makeText(CadastroActivity.this, "Erro ao cadastrar usuário: " + erro, Toast.LENGTH_LONG ).show();
