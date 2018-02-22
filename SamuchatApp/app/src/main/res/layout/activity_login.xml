@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray"
+    android:gravity="center_vertical|center_horizontal"
+    android:padding="16dp"
+    tools:context="br.com.exemple.samuchatappandroid.samuchatapp.activity.LoginActivity">
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="@dimen/largura_logo"
+        android:layout_height="@dimen/altura_logo"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp"
+        app:srcCompat="@drawable/chat_logo" />
+
+    <EditText
+        android:id="@+id/edit_login_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/imageView5"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="Digite seu e-mail"
+        android:textColor="@android:color/black"
+        android:inputType="textPersonName"/>
+
+    <EditText
+        android:id="@+id/edit_login_senha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/edit_login_email"
+        android:layout_marginTop="35dp"
+        android:ems="10"
+        android:hint="Digite sua senha"
+        android:inputType="textPassword"
+        android:textColor="@android:color/black" />
+
+    <Button
+        android:id="@+id/bt_logar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/edit_login_senha"
+        android:layout_marginTop="31dp"
+        android:text="Logar" />
+
+    <TextView
+        android:id="@+id/cadastra-seId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bt_logar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="6dp"
+        android:onClick="abrirCadastroUsuario"
+        android:text="Não tem cadastro, cadastra-se" />
+
+</RelativeLayout>

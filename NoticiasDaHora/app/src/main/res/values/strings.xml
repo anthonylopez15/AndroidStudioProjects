@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Noticias Da Hora</string>
+    <string name="no_empty_view">Sem nada a mostrar</string>
+    <string name="no_connection">Sem Conexão</string>
+</resources>

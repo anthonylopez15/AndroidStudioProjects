@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "78448047846",
+    "firebase_url": "https://chatapp-9a2f9.firebaseio.com",
+    "project_id": "chatapp-9a2f9",
+    "storage_bucket": "chatapp-9a2f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78448047846:android:e56bf1ac66e97f6e",
+        "android_client_info": {
+          "package_name": "br.com.exemple.samuchatappandroid.samuchatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "78448047846-srhb1hfeb6u0qeij645nn8g1tn761sad.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.exemple.samuchatappandroid.samuchatapp",
+            "certificate_hash": "f507554186a7ab4bf1307b7ca81e107625b67cae"
+          }
+        },
+        {
+          "client_id": "78448047846-gu3j0ettkmokv6cqkd5icjd9qsfdu4rd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmm8ocMNmCgbJvHjhyv5l73K7LMQ65qr0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "78448047846-gu3j0ettkmokv6cqkd5icjd9qsfdu4rd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

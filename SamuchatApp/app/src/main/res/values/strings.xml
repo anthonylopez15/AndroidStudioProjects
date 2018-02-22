@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Samu chatApp</string>
+    <string name="action_setting">Settings</string>
+    <string name="item_sair">Sair</string>
+    <string name="item_configuracoes">Configurações</string>
+    <string name="item_pesquisa">Pequisar</string>
+    <string name="item_add_user">Adicionar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="botao_cadastrar">Cadastrar</string>
+</resources>
