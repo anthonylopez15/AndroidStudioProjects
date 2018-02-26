@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Cadastro Samu</string>
+    <string name="title_activity_cadastro">CadastroActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="botao_voltar">Voltar</string>
+    <string name="botao_prox">Proximo</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>
