@@ -37,6 +37,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.exemple.samuchatappandroid.samuchatapp.activity.MainActivity"/>
         </activity>
+
     </application>
 
 </manifest>
