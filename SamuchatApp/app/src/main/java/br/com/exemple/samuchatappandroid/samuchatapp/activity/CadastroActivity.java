@@ -55,7 +55,7 @@ public class CadastroActivity extends AppCompatActivity {
                 usuario.setNome( nome.getText().toString() );
                 usuario.setEmail(email.getText().toString());
                 usuario.setSenha(senha.getText().toString());
-                cadastrarUsuario();
+                cadastrarUsuario();//SALVAR O USUARIO NO AUTHENTICATION
 
             }
         });
@@ -65,10 +65,7 @@ public class CadastroActivity extends AppCompatActivity {
     private void cadastrarUsuario(){
 
         autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
-        autenticacao.createUserWithEmailAndPassword(
-                usuario.getEmail(),
-                usuario.getSenha()
-        ).addOnCompleteListener(CadastroActivity.this, new OnCompleteListener<AuthResult>() {
+        autenticacao.createUserWithEmailAndPassword(usuario.getEmail(), usuario.getSenha()).addOnCompleteListener(CadastroActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
