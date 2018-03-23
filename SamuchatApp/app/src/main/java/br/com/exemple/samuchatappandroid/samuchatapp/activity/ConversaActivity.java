@@ -77,6 +77,7 @@ public class ConversaActivity extends AppCompatActivity {
         mensagens = new ArrayList<>();
         adapter = new MensagemAdapter(ConversaActivity.this, mensagens);
         listView.setAdapter( adapter );
+        listView.setSelection(listView.getCount() - 1);
 
         // Recuperar mensagens do Firebase
         firebase = ConfiguracaoFirebase.getFirebase()
