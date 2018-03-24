@@ -2,6 +2,7 @@ package br.com.exemple.samuchatappandroid.samuchatapp.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -38,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private String identificadorContato;
     private DatabaseReference firebase;
+
+    private static final String NOME_ARQUIVO = "chatapp.preferencias";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,6 +180,9 @@ public class MainActivity extends AppCompatActivity {
     private void deslogarUsuario(){
 
         usuarioFirebase.signOut();
+        SharedPreferences.Editor prefsEditor = getSharedPreferences(NOME_ARQUIVO, 0).edit();
+        prefsEditor.clear();
+        prefsEditor.commit();
 
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);

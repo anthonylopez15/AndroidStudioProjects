@@ -1,7 +1,9 @@
 package br.com.exemple.samuchatappandroid.samuchatapp.activity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -45,6 +47,10 @@ public class LoginActivity extends AppCompatActivity {
     private ValueEventListener valueEventListenerUsuario;
     private String identificadorUsuarioLogado;
 
+    static String TAG = "LoginActivity";
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,22 +71,17 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Campos vazio", Toast.LENGTH_LONG).show();
                 } else {
                     usuario = new Usuario();
-                    usuario.setEmail(email.getText().toString());
-                    usuario.setSenha(senha.getText().toString());
-                    Toast.makeText(LoginActivity.this, " " + usuario.getEmail(), Toast.LENGTH_LONG).show();
+                    usuario.setEmail(email.getText().toString().trim());
+                    usuario.setSenha(senha.getText().toString().trim());
+
                     validarLogin();
+                    Log.i(TAG + " botao logar ", usuario.getEmail().toString());
                 }
             }
         });
 
     }
 
-    public void abrirCadastroUsuario(View view) {
-
-        Intent intent = new Intent(LoginActivity.this, CadastroActivity.class);
-        startActivity(intent);
-
-    }
 
     private void validarLogin() {
 
@@ -94,6 +95,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (task.isSuccessful()) {
                     identificadorUsuarioLogado = Base64Custom.codificarBase64(usuario.getEmail());
+
                     firebase = ConfiguracaoFirebase.getFirebase()
                             .child("usuarios")
                             .child(identificadorUsuarioLogado);
@@ -105,6 +107,9 @@ public class LoginActivity extends AppCompatActivity {
 
                             Preferencias preferencias = new Preferencias(LoginActivity.this);
                             preferencias.salvarDados(identificadorUsuarioLogado, usuarioRecuperado.getNome());
+
+
+                            Log.e(TAG + " identificador chared ", preferencias.getIdentificador());
 
                         }
 
@@ -129,6 +134,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void abrirTelaPrincipal() {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        intent.putExtra("idUsuarioLogado",  identificadorUsuarioLogado);
+        Log.i(TAG, "Enviar dado da intent: " + identificadorUsuarioLogado);
         startActivity(intent);
         finish();
     }
@@ -138,6 +145,13 @@ public class LoginActivity extends AppCompatActivity {
         if (autenticacao.getCurrentUser() != null) {
             abrirTelaPrincipal();
         }
+    }
+
+    public void abrirCadastroUsuario(View view) {
+
+        Intent intent = new Intent(LoginActivity.this, CadastroActivity.class);
+        startActivity(intent);
+
     }
 
 }

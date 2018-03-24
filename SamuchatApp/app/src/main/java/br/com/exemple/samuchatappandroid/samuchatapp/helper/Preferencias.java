@@ -22,7 +22,7 @@ public class Preferencias {
 
     public Preferencias( Context contextoParametro){
         contexto = contextoParametro;
-        preferences = contexto.getSharedPreferences(NOME_ARQUIVO, MODE );
+        preferences = contexto.getSharedPreferences(NOME_ARQUIVO, Context.MODE_PRIVATE );
         editor = preferences.edit();
     }
 
@@ -33,10 +33,12 @@ public class Preferencias {
     }
 
     public String getIdentificador(){
-        return preferences.getString(CHAVE_IDENTIFICADOR, "");
+        String idIdentificador = preferences.getString(CHAVE_IDENTIFICADOR, null);
+        return idIdentificador;
     }
     public String getNome(){
-        return preferences.getString(CHAVE_NOME, "");
+        String nomeUsuario = preferences.getString(CHAVE_NOME, null);
+        return nomeUsuario;
     }
 
 }

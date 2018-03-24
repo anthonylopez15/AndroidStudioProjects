@@ -1,9 +1,12 @@
 package br.com.exemple.samuchatappandroid.samuchatapp.fragment;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +39,12 @@ public class ContatosFragment extends Fragment {
     private DatabaseReference firebase;
     private ValueEventListener valueEventListenerContatos;
 
+    private String idUsuarioLogadoFinal;
+    private String idUsuarioLogadoBundle;
+
+    static String TAG = "ContatosFragments";
+
+
     public ContatosFragment() {
         // Required empty public constructor
     }
@@ -43,13 +52,13 @@ public class ContatosFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        firebase.addValueEventListener( valueEventListenerContatos );
+        firebase.addValueEventListener(valueEventListenerContatos);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        firebase.removeEventListener( valueEventListenerContatos );
+        firebase.removeEventListener(valueEventListenerContatos);
     }
 
     @Override
@@ -64,16 +73,31 @@ public class ContatosFragment extends Fragment {
         //Monta listview e adapter
         listView = (ListView) view.findViewById(R.id.lv_contatos);
 
-        adapter = new ContatoAdapter(getActivity(), contatos );
-        listView.setAdapter( adapter );
+        adapter = new ContatoAdapter(getActivity(), contatos);
+        listView.setAdapter(adapter);
 
-        //Recuperar contatos do firebase
+        // recuperar dados do usuário
         Preferencias preferencias = new Preferencias(getActivity());
-        String identificadorUsuarioLogado = preferencias.getIdentificador();
+        String idUsuarioLogadoPreference = preferencias.getIdentificador();
+
+
+        Bundle extra = getActivity().getIntent().getExtras();
+        if (extra != null) {
+            idUsuarioLogadoBundle = extra.getString("idUsuarioLogado");
+        }
+
+        if (idUsuarioLogadoPreference == null) {
+            idUsuarioLogadoFinal = idUsuarioLogadoBundle;
+            Log.i(TAG, "Deu prefence nulo, idUsuarioLogadoFinal = " + idUsuarioLogadoFinal);
+        } else {
+            idUsuarioLogadoFinal = idUsuarioLogadoPreference;
+            Log.i(TAG, "Deu prefence, idUsuarioLogadoFinal = " + idUsuarioLogadoFinal);
+        }
+
 
         firebase = ConfiguracaoFirebase.getFirebase()
                 .child("contatos")
-                .child( identificadorUsuarioLogado );
+                .child(idUsuarioLogadoFinal);
 
         //Listener para recuperar contatos
         valueEventListenerContatos = new ValueEventListener() {
@@ -84,10 +108,10 @@ public class ContatosFragment extends Fragment {
                 contatos.clear();
 
                 //Listar contatos
-                for (DataSnapshot dados: dataSnapshot.getChildren() ){
+                for (DataSnapshot dados : dataSnapshot.getChildren()) {
 
-                    Contato contato = dados.getValue( Contato.class );
-                    contatos.add( contato );
+                    Contato contato = dados.getValue(Contato.class);
+                    contatos.add(contato);
 
 
                 }
@@ -112,8 +136,8 @@ public class ContatosFragment extends Fragment {
                 Contato contato = contatos.get(position);
 
                 // enviando dados para conversa activity
-                intent.putExtra("nome", contato.getNome() );
-                intent.putExtra("email", contato.getEmail() );
+                intent.putExtra("nome", contato.getNome());
+                intent.putExtra("email", contato.getEmail());
 
                 startActivity(intent);
 

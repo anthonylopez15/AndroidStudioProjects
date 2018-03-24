@@ -1,8 +1,12 @@
 package br.com.exemple.samuchatappandroid.samuchatapp.fragment;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -42,6 +46,12 @@ public class ConversasFragment extends Fragment {
     private DatabaseReference firebase;
     private ValueEventListener valueEventListenerConversas;
 
+    private String idUsuarioLogadoFinal;
+    private String idUsuarioLogadoBundle;
+
+    static String TAG = "ConversasFragments";
+
+
     public ConversasFragment() {
         // Required empty public constructor
     }
@@ -56,28 +66,39 @@ public class ConversasFragment extends Fragment {
         // Monta listview e adapter
         conversas = new ArrayList<>();
         listView = (ListView) view.findViewById(R.id.lv_conversas);
-        adapter = new ConversaAdapter(getActivity(), conversas );
-        listView.setAdapter( adapter );
+        adapter = new ConversaAdapter(getActivity(), conversas);
+        listView.setAdapter(adapter);
 
         // recuperar dados do usuário
         Preferencias preferencias = new Preferencias(getActivity());
-        String idUsuarioLogado = preferencias.getIdentificador();
-        String idUsuarioNome = preferencias.getNome();
+        String idUsuarioLogadoPreference = preferencias.getIdentificador();
 
-        Toast.makeText(getActivity(), "idLogado COMO: " + idUsuarioLogado, Toast.LENGTH_SHORT).show();
-        Log.i("INFO: ", "ABRINDO onCreate >> " + idUsuarioLogado);
+
+        Bundle extra = getActivity().getIntent().getExtras();
+        if(extra != null){
+        idUsuarioLogadoBundle = extra.getString("idUsuarioLogado");
+        }
+
+        if (idUsuarioLogadoPreference == null) {
+            idUsuarioLogadoFinal = idUsuarioLogadoBundle;
+            Log.i(TAG, "Deu prefence nulo, idUsuarioLogadoFinal = " + idUsuarioLogadoFinal);
+        } else {
+            idUsuarioLogadoFinal = idUsuarioLogadoPreference;
+            Log.i(TAG, "Deu prefence, idUsuarioLogadoFinal = " + idUsuarioLogadoFinal);
+        }
+
         // Recuperar conversas do Firebase
         firebase = ConfiguracaoFirebase.getFirebase()
                 .child("conversas")
-                .child( idUsuarioLogado );
+                .child(idUsuarioLogadoFinal);
 
         valueEventListenerConversas = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 conversas.clear();
-                for ( DataSnapshot dados: dataSnapshot.getChildren() ){
-                    Conversa conversa = dados.getValue( Conversa.class );
+                for (DataSnapshot dados : dataSnapshot.getChildren()) {
+                    Conversa conversa = dados.getValue(Conversa.class);
                     conversas.add(conversa);
                 }
                 adapter.notifyDataSetChanged();
@@ -96,11 +117,11 @@ public class ConversasFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Conversa conversa = conversas.get(position);
-                Intent intent = new Intent(getActivity(), ConversaActivity.class );
+                Intent intent = new Intent(getActivity(), ConversaActivity.class);
 
-                intent.putExtra("nome", conversa.getNome() );
-                String email = Base64Custom.decodificarBase64( conversa.getIdUsuario() );
-                intent.putExtra("email", email );
+                intent.putExtra("nome", conversa.getNome());
+                String email = Base64Custom.decodificarBase64(conversa.getIdUsuario());
+                intent.putExtra("email", email);
 
                 startActivity(intent);
 
@@ -122,4 +143,5 @@ public class ConversasFragment extends Fragment {
         super.onStop();
         firebase.removeEventListener(valueEventListenerConversas);
     }
+
 }
