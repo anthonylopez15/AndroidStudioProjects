@@ -100,6 +100,7 @@ public class ConversaActivity extends AppCompatActivity {
                 }
 
                 adapter.notifyDataSetChanged();
+                listView.setSelection(listView.getCount() - 1);
 
             }
 

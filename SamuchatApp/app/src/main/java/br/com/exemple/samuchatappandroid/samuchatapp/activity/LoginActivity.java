@@ -108,9 +108,7 @@ public class LoginActivity extends AppCompatActivity {
                             Preferencias preferencias = new Preferencias(LoginActivity.this);
                             preferencias.salvarDados(identificadorUsuarioLogado, usuarioRecuperado.getNome());
 
-
-                            Log.e(TAG + " identificador chared ", preferencias.getIdentificador());
-
+                            Log.d(TAG + " identificador chared ", preferencias.getIdentificador());
                         }
 
                         @Override

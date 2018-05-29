@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "78448047846-srhb1hfeb6u0qeij645nn8g1tn761sad.apps.googleusercontent.com",
+          "client_id": "78448047846-251ifdhmiq0olglag4lnfrkp3cr6h5pf.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "br.com.exemple.samuchatappandroid.samuchatapp",
-            "certificate_hash": "f507554186a7ab4bf1307b7ca81e107625b67cae"
+            "certificate_hash": "26dd30015a30d28de22e07c50e15b81724a6c558"
           }
         },
         {
@@ -29,7 +29,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAmm8ocMNmCgbJvHjhyv5l73K7LMQ65qr0"
+          "current_key": "AIzaSyCpSPSnRrGQGK9RtUJUwU4L4-34HhEFflA"
         }
       ],
       "services": {
