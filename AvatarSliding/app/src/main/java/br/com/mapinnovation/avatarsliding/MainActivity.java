@@ -43,9 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
     private int contagem = 0;
 
-
-    ScaleGestureDetector scaleGestureDetector;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitle("Curso de Desenvolvimento Web");
 
         setSupportActionBar(toolbar);
+//        toolbar.setNavigationIcon(ContextCompat.getDrawable(this, R.mipmap.ic_launcher));
 
         //Chama o avatar na tela
         layoutUnity = (FrameLayout) findViewById(R.id.avatar);
@@ -71,10 +69,8 @@ public class MainActivity extends AppCompatActivity {
 
         layoutUnity.addView(mUnityPlayer.getView(), 0, lp);
 
-
         mNextBtn = (ImageView) findViewById(R.id.nextBtn);
         mBackBtn = (ImageView) findViewById(R.id.prevBtn);
-
 
         mSlideViewPger = (ViewPager) findViewById(R.id.slideViewPager);
         slideAdapter = new SlideAdapter(this);
@@ -105,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
 
     ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
         @Override

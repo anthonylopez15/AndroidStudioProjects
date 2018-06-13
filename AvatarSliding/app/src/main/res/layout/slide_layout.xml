@@ -13,7 +13,7 @@
         android:visibility="visible"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/eat_icon" />
+        app:srcCompat="@drawable/cap_1" />
 
     <!--android:layout_marginTop="100dp"-->
 
