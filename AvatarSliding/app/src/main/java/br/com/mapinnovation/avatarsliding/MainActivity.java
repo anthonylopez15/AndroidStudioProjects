@@ -1,8 +1,10 @@
 package br.com.mapinnovation.avatarsliding;
 
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -158,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
                 finish();
                 break;
             case R.id.about_menu:
-                Toast.makeText(this, "Curso de Desenvolvimento Web.", Toast.LENGTH_LONG).show();
+                instrutorDialog();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -166,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void avatarSinaliza(View view) {
         int index = mSlideViewPger.getCurrentItem();
-        sinalizarAvatar(removerAcentos(slide_description[index]));
+        sinalizarAvatar(removerAcentos(slide_description[index]).replace(".", " "));
     }
 
     public static String removerAcentos(String str) {
@@ -242,4 +244,26 @@ public class MainActivity extends AppCompatActivity {
             /*30*/"Sucesso conseguir precisar paciência ter.",
             /*31*/"Obrigado. Email."
     };
+
+    private void instrutorDialog() {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which) {
+                    case DialogInterface.BUTTON_POSITIVE:
+                        dialog.dismiss();
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.DialogStyle);
+        builder.setTitle("Instrutores");
+        builder.setMessage("Matheus Azevedo\nBruno Torres");
+        builder.setPositiveButton("Fechar", dialogClickListener);
+        builder.setIcon(R.mipmap.ic_launcher);
+        AlertDialog mNoGpsDialog = builder.create();
+        mNoGpsDialog.show();
+
+    }
 }

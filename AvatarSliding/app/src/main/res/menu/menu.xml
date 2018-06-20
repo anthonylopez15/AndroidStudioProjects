@@ -2,10 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/about_menu"
+        android:title="Instrutores" />
+
+    <item
         android:id="@+id/logout_menu"
         android:title="Sair" />
-    <item
-        android:id="@+id/about_menu"
-        android:title="Sobre" />
 
 </menu>
